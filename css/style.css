@@ -1,3 +1,11 @@
 #toDoForm > * {
     margin-bottom: 1rem;
 }
+
+tbody .actions {
+    visibility: hidden;
+}
+
+tbody tr:hover .actions{
+    visibility: visible;
+}

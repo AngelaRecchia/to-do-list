@@ -25,13 +25,19 @@ let toDoList = [];
 
 //stampa in tabella ogni ToDo contenuto in toDoList
 function printList() {
-    toDoList.forEach((toDo) => {
-        document.getElementById("toDoTable").innerHTML +=
+    document.getElementById("tableBody").innerHTML = "";
+    toDoList.forEach((toDo,index) => {
+        document.getElementById("tableBody").innerHTML +=
             `<tr>
                 <td> ${toDo.title} </td>
                 <td> ${toDo.description} </td>
                 <td> ${states[toDo.state]} </td>
                 <td> ${toDo.expiry} </td>
+                <td  class="actions">
+                    <button type="button" class="btn btn-danger btn-sm" onClick="deleteToDo(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                <td>
             </tr>`;
     });
 }
@@ -43,7 +49,7 @@ function closeModal() {
     modal.hide();
 }
 
-//ottiene input, crea ToDo e lo aggiunge alla toDoList
+//ottiene input, crea ToDo, lo aggiunge alla toDoList
 function createToDo() {
 
     // ottiene valori input
@@ -58,28 +64,21 @@ function createToDo() {
     //ristampa toDoList
     printList();
 
+    clearForm();
     closeModal();
 }
 
-function getToday() {
-
-    // data giorno attuale
-    let today = new Date();
-
-    // ottiene giorno, mese, anno
-    const dd = today.getDate();
-    const mm = today.getMonth()+1; 
-    const yyyy = today.getFullYear();
-
-    //formatta data
-    if(dd < 10) dd='0'+dd;
-
-    if(mm<10) mm='0'+mm;
-    
-    return mm + '-' + dd + '-' + yyyy;
+function deleteToDo(index) {
+    toDoList.splice(index, 1);
+    printList();
 }
 
-//validazioni input
+//cancella campi input
+function clearForm() {
+    document.getElementById("toDoForm").reset();
+    setDate();
+    return false;
+}
 
 //controlli su data: min e default = oggi
 function setDate() {
@@ -89,6 +88,7 @@ function setDate() {
     document.getElementById("expiry").value = today;
     document.getElementById("expiry").min = today;
 }
+
 
 setDate();
 printList();

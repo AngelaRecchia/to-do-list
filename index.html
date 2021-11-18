@@ -15,6 +15,7 @@
 <body>
     
     <header>
+
         <div class="container my-3 text-center">
             <h1 class="text-uppercase">To Do List</h1>
         </div>
@@ -22,66 +23,12 @@
         <div class="newToDoContainer container d-flex justify-content-center">
 
             <!-- Button trigger modal -->
-             <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#modalForm">
+             <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#modalForm" onClick="setCreateForm()">
                +
              </button>
          
-             <!-- Modal -->
-             <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="modalFormLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                 <div class="modal-content">
-                   <div class="modal-header">
-                     <h5 class="modal-title" id="modalFormLabel">Nuovo To-Do</h5>
-                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                   </div>
-                   <div class="modal-body">
-                     <div>
-
-                         <!-- inputs to-do field -->
-                         <form id="toDoForm" onsubmit="createToDo(); return false">
-
-                             <!-- title -->
-                             <div class="form-group">
-                               <label for="title">Titolo</label>
-                               <input type="text" class="form-control form-control-lg" id="title" maxlength="100" required>
-                             </div>
-
-                             <!-- description -->
-                             <div class="form-group">
-                                 <label for="description" class="form-label">Descrizione</label>
-                                 <textarea class="form-control" id="description" maxlength="500" required></textarea>
-                             </div>
-
-                             <!-- state -->
-                             <div class="form-group">
-                               <label for="state">Stato</label>
-                               <select id="state" class="form-control">
-                                 <option value="0">inserito</option>
-                                 <option value="1">in elaborazione</option>
-                                 <option value="2">completato</option>
-                               </select>
-                             </div>
-
-                             <!-- expiry date -->
-                             <div class="form-group">
-                                 <label for="expiry">Scadenza</label>
-                                 <input type="date" id="expiry" class="form-control" required>
-                             </div>
-
-                             <!-- cancel / save buttons-->
-                             <div class="form-group text-end">
-                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-                                 <button type="submit" class="btn btn-primary">Salva</button>
-                             </div>
-                             
-                         </form>
-
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
         </div>
+
     </header>
 
     <main>
@@ -100,12 +47,73 @@
                 </thead>
         
                 <tbody id="tableBody">
-                    <!-- todos injected in script.js -->
+                    <!-- toDos injected in script.js -->
                 </tbody>
                 
             </table>
         </div>
+
     </main>
+
+    <!-- Modal: create, view, edit toDo form-->
+    <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="modalFormLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalFormLabel">
+                  <!-- injected title -->
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div>
+
+                  <!-- inputs to-do field -->
+                  <form id="toDoForm">
+
+                      <!-- title -->
+                      <div class="form-group text-center">
+                        <label for="title">Titolo</label>
+                        <input type="text" class="form-control form-control-lg text-center" id="title" name="title" maxlength="100" required />
+                      </div>
+
+                      <!-- description -->
+                      <div class="form-group text-center">
+                          <label for="description" class="form-label">Descrizione</label>
+                          <textarea  id="description" class="form-control text-center" name="description" maxlength="500" required></textarea>
+                      </div>
+
+                      <!-- state -->
+                      <div class="form-group text-center">
+                        <label for="state">Stato</label>
+                        <select id="state" class="form-control text-center" name="state">
+                          <option>inserito</option>
+                          <option>in elaborazione</option>
+                          <option>completato</option>
+                        </select>
+                      </div>
+
+                      <!-- expiry date -->
+                      <div class="form-group text-center">
+                          <label for="expiry">Scadenza</label>
+                          <input type="date" id="expiry" class="form-control" name="expiry" required>
+                      </div>
+
+                      <!-- cancel / save buttons-->
+                      <div class="form-group text-end">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+
+                          <button type="button" class="btn btn-primary" id="btnAction">Salva</button>
+
+                      </div>
+                      
+                  </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     
     <!-- js -->
     <script src="js/script.js"></script>
@@ -113,3 +121,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<div>
+    
+</div>
